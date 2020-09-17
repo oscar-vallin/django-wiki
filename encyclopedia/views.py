@@ -28,7 +28,8 @@ def entry(request,entry):
     entryMD = util.get_entry(entry)
     if entryMD is None:
         return render(request, "encyclopedia/entryError.html", {
-            "entryTile": entry
+            "entryTitle": entry,
+            "error": "Warning!!!"
         })
     else:
          return render(request, "encyclopedia/entry.html", {
@@ -37,7 +38,6 @@ def entry(request,entry):
          })   
 
 def newPage(request):
-    print(request.method)
     #Return method POST
     if request.method == "POST":
         #Form with its values

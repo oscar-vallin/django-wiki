@@ -1,1 +1,0 @@
-Sed de venganza
