@@ -13,10 +13,9 @@
     ><h1>Create Your Entry here...!</h1>   
     {% endif %} 
 {% block body %}
-    <p>Create your new Entry</p>
-    <form action="{% url 'newPage' %}" method="post">
-        {% csrf_token %}
+    <p>Create your new Entry</p><div>
+    <form action="{% url 'newPage' %}" method="post">{% csrf_token %}
         {{ form.as_p }}
-        <input type = "submit" value="Submit">
+        <button type="submit"><i class="fas fa-edit"></i>Create</button>
     </form>
 {% endblock %}

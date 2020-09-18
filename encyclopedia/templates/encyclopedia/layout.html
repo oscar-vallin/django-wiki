@@ -12,8 +12,8 @@
     </head>
     <body>
         <div class="row">
-            <div class="sidebar col-lg-2 col-md-3  bg-dark text-light">
-                <h2 class="text-center">Wiki</h2>
+            <div class="sidebar  col-lg-2 col-md-2 bg-dark text-light">
+                <h4 class="text-center">Wiki</h4>
                 <div class="input-group">
                     <form action="{% url 'search' %}" method="GET">
                         <input class="search form-control mt-3 mb-3" type="text" name="q" placeholder="Search Encyclopedia">
@@ -21,15 +21,15 @@
                 </div>
                 <div >
                     <ul class="list-group">
-                        <i class="fas fa-home h4"><a class="text-light text-decoration-none" href="{% url 'index' %}"> Home</a></i>
-                        <i class="fas fa-folder-plus mt-2 h4"><a class="text-light text-decoration-none" href="{% url 'newPage' %}"> Create</a></i>
-                        <i class="fas fa-dice mt-2 h4"><a class="text-light text-decoration-none" href="{% url 'random' %}"> Random</a></i>
+                        <li class="fas fa-home h5"><a class="text-light text-decoration-none" href="{% url 'index' %}"> Home</a></li>
+                        <li class="fas fa-folder-plus mt-2 h5"><a class="text-light text-decoration-none" href="{% url 'newPage' %}"> Create</a></li>
+                        <li class="fas fa-dice mt-2 h5"><a class="text-light text-decoration-none" href="{% url 'random' %}"> Random</a></li>
                     </ul>
                 </div>
                 {% block nav %}
                 {% endblock %}
             </div>
-            <div class="main col-lg-10 col-md-9">
+            <div class="main col-lg-9 col-md-9">
                 {% block body %}
                 {% endblock %}
             </div>

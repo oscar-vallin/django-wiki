@@ -6,7 +6,11 @@
 
 {% block body %}
     <div>
-        <h1 style="text-align: center;">{{error}}</h1>
-        <p>There is no title with the name <span style="font-size: 3rem; font-weight: 700;">{{entryTitle}}</span></p>
+        <h1 class="list-group-item list-group-item-warning text-center" >{{error}}</h1>
+        <h4>We have a problem {{title}}... {{problem}} {{exists}},<span style="font-size: 3rem; font-weight: 700;"> {{entryTitle}}</span></h4>
+        {% if return %}
+        <a class="text-decoration-none" href="{% url 'newPage' %}"><h5>You can enter another title</h5></a>
+        {% endif %}
+
     </div>
 {% endblock %}

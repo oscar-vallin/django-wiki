@@ -14,7 +14,7 @@ from markdown2 import Markdown
 #     contenido = forms.CharField(label="Content", widget=forms.Textarea())
 class CreateForm(forms.Form):
     title = forms.CharField(label="Entry title", widget=forms.TextInput())
-    content = forms.CharField(widget=forms.Textarea())
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control z-depth-1 w-75'}))
     edit = forms.BooleanField(initial=False, widget=forms.HiddenInput(), required=False)
 
 
@@ -29,12 +29,13 @@ def entry(request,entry):
     if entryMD is None:
         return render(request, "encyclopedia/entryError.html", {
             "entryTitle": entry,
-            "error": "Warning!!!"
+            "error": "Warning!!!",
+            "problem": "could not find"
         })
     else:
          return render(request, "encyclopedia/entry.html", {
              "entry": markdowner.convert(entryMD),
-             "entryTitle": entry
+             "entryTitle": entry,
          })   
 
 def newPage(request):
@@ -51,7 +52,12 @@ def newPage(request):
                util.save_entry(title, content)
                return HttpResponseRedirect(reverse('entry', kwargs={'entry': title}))
            else:
-               return render(request, "encyclopedia/entryError.html")    
+               return render(request, "encyclopedia/entryError.html",{
+                   "title":title,
+                   "exists": "this title already exists",
+                   "return": True,
+                   "error": "Warning!!!",
+               })    
        else:
            return render(request, "encyclopedia/newPage.html")    
     else:
@@ -69,7 +75,7 @@ def edit(request, entry):
     else:
         form = CreateForm()    
         form.fields["title"].initial = entry
-        form.fields["title"].widget = forms.HiddenInput()
+        # form.fields["title"].widget = forms.HiddenInput()
         form.fields["content"].initial = newEntry
         form.fields["edit"].initial = True
         return render(request, "encyclopedia/newPage.html",{
@@ -90,5 +96,6 @@ def search(request):
     else:
         return render(request, "encyclopedia/index.html",{
             "value": value,
-            "state": True
+            "state": True,
+            "warning": "Error",
         })    
